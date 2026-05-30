@@ -30,3 +30,19 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t tamrin1-api:ci .
+
+      - name: Smoke test Docker container
+        run: |
+          docker run -d --name tamrin1-api -p 8000:8000 tamrin1-api:ci
+
+          for i in {1..10}; do
+            if curl --silent --fail http://127.0.0.1:8000/; then
+              docker stop tamrin1-api
+              exit 0
+            fi
+            sleep 1
+          done
+
+          docker logs tamrin1-api
+          docker stop tamrin1-api
+          exit 1
