@@ -10,7 +10,7 @@ def test_home_returns_message():
     response = client.get("/")
 
     assert response.status_code == 200
-    assert response.json() == {"message": "Salam API"}
+    assert response.json() == {"message": "HI API"}
 
 
 def test_multiply_returns_product():

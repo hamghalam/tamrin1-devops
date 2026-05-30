@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "Salam API"}
+    return {"message": "HI API"}
 
 
 @app.post("/multiply")
